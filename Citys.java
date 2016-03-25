@@ -1,25 +1,48 @@
-package com.hc.jf.entity;
+package com.honzh.biz.database.entity;
 
-import java.util.List;
 
-import com.jfinal.plugin.activerecord.Model;
+/**
+ * 
+ * @ClassName: City
+ * @Description: 城市(这里用一句话描述这个类的作用)
+ */
+public class City {
 
-@SuppressWarnings("serial")
-public class Citys extends Model<Citys> {
-	public static final Citys me = new Citys();
+	private Integer id;// id
+	private Integer proid;// 省份ID
+	private String cname;// 名称
+	private String code;// 编码
 
-	public Citys getCityByCode(String code) {
-		Citys city = findFirst("select * from city where code=?", code);
-		return city;
+	public Integer getId() {
+		return id;
 	}
 
-	public List<Citys> getCitys() {
-		List<Citys> list = find("select * from city");
-		return list;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public List<Citys> getCitysByProvincialId(Long provincialId) {
-		List<Citys> list = find("select * from city c where c.proid = ?", provincialId);
-		return list;
+	public Integer getProid() {
+		return proid;
 	}
+
+	public void setProid(Integer proid) {
+		this.proid = proid;
+	}
+
+	public String getCname() {
+		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 }
