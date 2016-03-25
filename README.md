@@ -1,5 +1,5 @@
 # procity
-1.前端使用bootstrap集成组件，后端使用springMVC获取数据
+1.前端使用bootstrap集成组件，后端使用springMVC获取数据<br>
 2.页面可以直接使用select组件，增加对应属性。
 <div class="container">
 		<div class="row">
