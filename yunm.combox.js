@@ -17,31 +17,34 @@
 			success : function(response) {
 				$ref.empty();
 
-				var json = YUNM.jsonEval(response);
-				if (!json)
-					return;
-
-				var html = '';
-				$.each(json, function(i) {
-					if (json[i]) {
-
-						html += '<option value="' + json[i].value + '"';
-
-						if (json[i].selected) {
-							html += ' selected="' + json[i].selected;
-						}
-
-						html += '">' + json[i].name + '</option>';
-					}
-				});
-
-				$ref.html(html);
-
+				addHtml(response, $ref);
 				$ref.trigger("change").combox();
 			},
 			error : YUNM.ajaxError
 		});
 
+	};
+
+	var addHtml = function(response, $this) {
+		var json = YUNM.jsonEval(response);
+		if (!json)
+			return;
+
+		var html = '';
+		$.each(json, function(i) {
+			if (json[i]) {
+
+				html += '<option value="' + json[i].value + '"';
+
+				if (json[i].selected) {
+					html += ' selected="' + json[i].selected;
+				}
+
+				html += '">' + json[i].name + '</option>';
+			}
+		});
+
+		$this.html(html);
 	};
 
 	$.extend($.fn, {
@@ -66,27 +69,7 @@
 						cache : false,
 						data : {},
 						success : function(response) {
-							var json = YUNM.jsonEval(response);
-							if (!json)
-								return;
-
-							var html = '';
-							$.each(json, function(i) {
-								if (json[i]) {
-
-									html += '<option value="' + json[i].value + '"';
-
-									if (json[i].selected) {
-										html += ' selected="' + json[i].selected;
-										YUNM.debug(html);
-									}
-
-									html += '">' + json[i].name + '</option>';
-
-								}
-							});
-
-							$this.html(html);
+							addHtml(response, $this);
 
 							if (ref && $this.attr("refUrl")) {
 								$this.unbind("change", _onchange).bind("change", {
