@@ -47,9 +47,7 @@ public class ProcityController extends BaseController {
 					if (city_code != null && !city_code.equals("")) {
 						if (city.getCode().equals(city_code)) {
 							coption.setSelected("selected");
-							break;
 						}
-
 					}
 					coptions.add(coption);
 				}
